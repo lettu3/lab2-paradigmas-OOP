@@ -12,6 +12,7 @@ public class App {
 
     public static void main(String[] args) {
 
+        
         List<FeedsData> feedsDataArray = new ArrayList<>();
         try {
             feedsDataArray = JSONParser.parseJsonFeedsData("src/data/feeds.json");
@@ -19,7 +20,9 @@ public class App {
             e.printStackTrace();
             System.exit(1);
         }
-
+        if(args.length == 0){
+            printHelp(feedsDataArray);
+        }
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args);
 

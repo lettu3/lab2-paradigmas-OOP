@@ -9,7 +9,7 @@ El enunciado del laboratorio se encuentra en [este link](https://docs.google.com
 Pueden usar esta checklist para indicar el avance.
 
 ## Verificación de que pueden hacer las cosas.
-- [ ] Java 17 instalado. Deben poder compilar con `make` y correr con `make run` para obtener el mensaje de ayuda del programa.
+- [x] Java 17 instalado. Deben poder compilar con `make` y correr con `make run` para obtener el mensaje de ayuda del programa.
 
 ## 1.1. Interfaz de usuario
 - [ ] Estructurar opciones
