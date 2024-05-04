@@ -42,7 +42,9 @@ public class App {
 
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");
-            // TODO: Print the fetched feed
+            for(FeedsData feedData : feedsDataArray){
+                feedData.print();
+            }
         }
 
         if (config.getComputeNamedEntities()) {
