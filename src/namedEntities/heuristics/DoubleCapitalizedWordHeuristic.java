@@ -23,8 +23,8 @@ public class DoubleCapitalizedWordHeuristic {
         Pattern pattern = Pattern.compile("\\b(?!La\\b|El\\b|The\\b|San\\b|Lago\\b|Puerto\\b|Rio\\b|Monte\\b|República\\b)[A-Z][a-z]+\\s[A-Z][a-z]+");
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            names.add(matcher.group());
+            candidates.add(matcher.group());
         }
-        return names;
+        return candidates;
     }
 }
