@@ -1,9 +1,10 @@
 package namedEntities;
+//import com.google.gson.Gson;
+//import com.google.gson.reflect.TypeToken;
 import namedEntities.heuristics.CapitalizedWordHeuristic;
 import feed.Article;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class NamedEntity {
     private List <String>  listNamedEntities;
@@ -33,6 +34,30 @@ public class NamedEntity {
 List<NamedEntity> classifiedEntities = new ArrayList<>();
 
 /*
+public boolean isLocationEntity(String entity) {
+    try {
+        // Read the JSON file into a string
+        String json = new String(Files.readAllBytes(Paths.get("dictionary.json")));
+        // Parse the JSON string into a list of maps
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Map<String, String>>>(){}.getType();
+        List<Map<String, String>> dictionary = gson.fromJson(json, type);
+
+        // Iterate over the dictionary entries and check if the entity matches a location
+        for (Map<String, String> entry : dictionary) {
+            String label = entry.get("label");
+            String category = entry.get("category");
+            if (label.equals(entity) && category.equals("Location")) {
+                return true;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+ 
 
 for (String entity : listNamedEntities) {
     if (isLocationEntity(entity)) {
