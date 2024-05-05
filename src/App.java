@@ -45,12 +45,13 @@ public class App {
         }
 
         List<Article> allArticles = new ArrayList<>();
-        FeedParser p = new FeedParser();
         try {
-            //TODO: se fija en la primer URL, generalizar a todos
-            String urlXML = p.fetchFeed(feedsDataArray.get(0).getUrl());
-            p.fetchFeed(feedsDataArray.get(0).getUrl());
-            allArticles = p.parseXML(urlXML);
+            for(FeedsData feed : feedsDataArray){
+                String urlXML = FeedParser.fetchFeed(feed.getUrl());
+                FeedParser.fetchFeed(feed.getUrl());
+                allArticles = FeedParser.parseXML(urlXML);
+            }
+            
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e){
