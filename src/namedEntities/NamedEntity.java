@@ -15,15 +15,13 @@ public class NamedEntity {
     // algo del tipo Heuristic, hardcodeo a Capitalized
 
     public void parseFromHeuristicCap(Article art) {
-
         CapitalizedWordHeuristic heuristic = new CapitalizedWordHeuristic();
-        listNamedEntities = heuristic.extractCandidates(art.getTitle());
+        // Añadimos los candidadtos a listNamedEntities
+        listNamedEntities.addAll(heuristic.extractCandidates(art.getTitle()));
     }
 
     public void print() {
             System.out.println("Entidades nombradas: ");
-        for (String s : listNamedEntities) {
-            System.out.println(s);
-        }
+            System.out.println(listNamedEntities);
     }
 }
