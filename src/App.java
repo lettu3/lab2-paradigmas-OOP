@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.MalformedURLException;
 
-import feed.Article;
+import feed.*;
+import namedEntities.NamedEntity;
 import utils.Config;
 import utils.FeedsData;
 import utils.JSONParser;
@@ -26,11 +28,16 @@ public class App {
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args);
 
-        run(config, feedsDataArray);
+        try {
+            run(config, feedsDataArray);
+        }
+        catch (Exception e){ // atrapa todas las excepciones
+            e.printStackTrace();
+        }
     }
 
     // TODO: Change the signature of this function if needed
-    private static void run(Config config, List<FeedsData> feedsDataArray) {
+    private static void run(Config config, List<FeedsData> feedsDataArray) throws MalformedURLException, IOException, Exception {
 
         if (feedsDataArray == null || feedsDataArray.size() == 0) {
             System.out.println("No feeds data found");
@@ -38,6 +45,21 @@ public class App {
         }
 
         List<Article> allArticles = new ArrayList<>();
+        FeedParser p = new FeedParser();
+        try {
+            //TODO: se fija en la primer URL, generalizar a todos
+            String urlXML = p.fetchFeed(feedsDataArray.get(0).getUrl());
+            p.fetchFeed(feedsDataArray.get(0).getUrl());
+            allArticles = p.parseXML(urlXML);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         
+        
         // TODO: Populate allArticles with articles from corresponding feeds
 
         if (config.getPrintFeed()) {
@@ -52,7 +74,11 @@ public class App {
             System.out.println("Computing named entities using ");
 
             // TODO: compute named entities using the selected heuristic
-
+            NamedEntity ent = new NamedEntity();
+            for(Article art : allArticles){
+                ent.parseFromHeuristicCap(art);
+            }
+            ent.print();
             // TODO: Print stats
             System.out.println("\nStats: ");
             System.out.println("-".repeat(80));
