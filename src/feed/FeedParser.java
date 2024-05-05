@@ -6,16 +6,23 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory; //API para producir árboles DOM a partir de documentos XML.
 import javax.xml.parsers.DocumentBuilder;//Se usa para el parseo en sí.
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import java.io.StringReader;
 import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.InputSource;
 
 public class FeedParser {
+
+    public FeedParser(){
+        // nose, vacío
+    }
 
     public static List<Article> parseXML(String xmlData) {
         List<Article> articles = new ArrayList<>();
@@ -28,13 +35,35 @@ public class FeedParser {
             NodeList nList = doc.getElementsByTagName("item"); //Obtengo los "elementos" y me fijo cuántos hay. Cada elemento es un artículo.
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     //Voy recorriendo los artículos y guardando los datos de cada uno.
-                    Node nNode = nList.item(temp);
-                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Node nNode = nList.item(temp); // me da el item i-esimo
+                                        if (nNode.getNodeType() == org.w3c.dom.Element.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
-                        String title = eElement.getElementsByTagName("title").item(0).getTextContent();
-                        String link = eElement.getElementsByTagName("link").item(0).getTextContent();
-                        String description = eElement.getElementsByTagName("description").item(0).getTextContent();
-                        String pubDate = eElement.getElementsByTagName("pubDate").item(0).getTextContent();
+
+                        String title = "";
+                        String link = "";
+                        String description = "";
+                        String pubDate = "";
+
+                        // Chequeamos que los atributos estén
+                        Node titleNode = eElement.getElementsByTagName("title").item(0);
+                        if (titleNode != null) {
+                            title = titleNode.getTextContent();
+                        }
+
+                        Node linkNode = eElement.getElementsByTagName("link").item(0);
+                        if (linkNode != null) {
+                            link = linkNode.getTextContent();
+                        }
+
+                        Node descriptionNode = eElement.getElementsByTagName("description").item(0);
+                        if (descriptionNode != null) {
+                            description = descriptionNode.getTextContent();
+                        }
+
+                        Node pubDateNode = eElement.getElementsByTagName("pubDate").item(0);
+                        if (pubDateNode != null) {
+                            pubDate = pubDateNode.getTextContent();
+                        }
                         articles.add(new Article(title, description, pubDate, link)); //Creo un nuevo artículo y lo agrego a la lista.
                     }
                 }
