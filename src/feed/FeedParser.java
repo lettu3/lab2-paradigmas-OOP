@@ -7,12 +7,41 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilderFactory; //API para producir árboles DOM a partir de documentos XML.
+import javax.xml.parsers.DocumentBuilder;//Se usa para el parseo en sí.
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import java.io.StringReader;
+import javax.xml.transform.stream.StreamSource;
+import org.xml.sax.InputSource;
 
 public class FeedParser {
 
     public static List<Article> parseXML(String xmlData) {
-        // TODO
-        return null;
+        List<Article> articles = new ArrayList<>();
+
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(new InputSource(new StringReader(xmlData)));
+            doc.getDocumentElement().normalize();
+            NodeList nList = doc.getElementsByTagName("item"); //Obtengo los "elementos" y me fijo cuántos hay. Cada elemento es un artículo.
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    //Voy recorriendo los artículos y guardando los datos de cada uno.
+                    Node nNode = nList.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        String title = eElement.getElementsByTagName("title").item(0).getTextContent();
+                        String link = eElement.getElementsByTagName("link").item(0).getTextContent();
+                        String description = eElement.getElementsByTagName("description").item(0).getTextContent();
+                        String pubDate = eElement.getElementsByTagName("pubDate").item(0).getTextContent();
+                        articles.add(new Article(title, description, pubDate, link)); //Creo un nuevo artículo y lo agrego a la lista.
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace(); // Si hay un error, imprime el stack trace.
+            }
+        return articles;
     }
 
     public static String fetchFeed(String feedURL) throws MalformedURLException, IOException, Exception {
