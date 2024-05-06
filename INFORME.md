@@ -12,16 +12,16 @@ Pueden usar esta checklist para indicar el avance.
 - [x] Java 17 instalado. Deben poder compilar con `make` y correr con `make run` para obtener el mensaje de ayuda del programa.
 
 ## 1.1. Interfaz de usuario
-- [ ] Estructurar opciones
-- [ ] Construir el objeto de clase `Config`
+- [x ] Estructurar opciones
+- [x ] Construir el objeto de clase `Config`
 
 ## 1.2. FeedParser
-- [ ] `class Article`
-    - [ ] Atributos
-    - [ ] Constructor
-    - [ ] Método `print`
+- [x ] `class Article`
+    - [ x] Atributos
+    - [ x] Constructor
+    - [ x] Método `print`
     - [ ] _Accessors_
-- [ ] `parseXML`
+- [x ] `parseXML`
 
 ## 1.3. Entidades nombradas
 - [ ] Pensar estructura y validarla con el docente
