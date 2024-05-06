@@ -36,34 +36,38 @@ public class FeedParser {
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     //Voy recorriendo los artículos y guardando los datos de cada uno.
                     Node nNode = nList.item(temp); // me da el item i-esimo
-                                        if (nNode.getNodeType() == org.w3c.dom.Element.ELEMENT_NODE) {
-                        Element eElement = (Element) nNode;
+                        if (nNode.getNodeType() == org.w3c.dom.Element.ELEMENT_NODE) {
+                             Element eElement = (Element) nNode;
+                             String title = "";
+                             String link = "";
+                             String description = "";
+                             String pubDate = "";
 
-                        String title = "";
-                        String link = "";
-                        String description = "";
-                        String pubDate = "";
-
-                        // Chequeamos que los atributos estén
-                        Node titleNode = eElement.getElementsByTagName("title").item(0);
+                             // Chequeamos que los atributos estén
+                             Node titleNode = eElement.getElementsByTagName("title").item(0);
+                             
                         if (titleNode != null) {
                             title = titleNode.getTextContent();
                         }
 
                         Node linkNode = eElement.getElementsByTagName("link").item(0);
+                        
                         if (linkNode != null) {
                             link = linkNode.getTextContent();
                         }
 
                         Node descriptionNode = eElement.getElementsByTagName("description").item(0);
+                        
                         if (descriptionNode != null) {
                             description = descriptionNode.getTextContent();
                         }
 
                         Node pubDateNode = eElement.getElementsByTagName("pubDate").item(0);
+                        
                         if (pubDateNode != null) {
                             pubDate = pubDateNode.getTextContent();
                         }
+                        
                         articles.add(new Article(title, description, pubDate, link)); //Creo un nuevo artículo y lo agrego a la lista.
                     }
                 }
