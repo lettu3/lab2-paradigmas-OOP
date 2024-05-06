@@ -27,30 +27,26 @@ public class JSONParser {
     }
 
     
-    static public List<DictEntity> parseJsonDictEntity (String jsonFilePath) throws IOException {
-        List<DictEntity> entityList = new ArrayList<>();
+    static public DictEntity parseJsonDictEntity (String jsonFilePath) throws IOException {
+        DictEntity dict = new DictEntity();
         
         try {
             String jsonData = new String(Files.readAllBytes(Paths.get(jsonFilePath)));    
             JSONArray jsonArray = new JSONArray(jsonData);
-
             for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject (i);
                 String label = jsonObject.getString("label");
-                String category = jsonObject.getString("category");
-                List<String> topics = getStringListFromJSONArray(jsonObject.getJSONArray("Topic"));
+                String category = jsonObject.getString("Category");
+                List<String> topics = getStringListFromJSONArray(jsonObject.getJSONArray("Topics"));
                 List<String> keywords = getStringListFromJSONArray(jsonObject.getJSONArray("keywords"));
- 
-                entityList.add(new DictEntity(label, category, topics, keywords));
-                
+                dict.add(label, category, topics, keywords);
             }
  
         } 
         catch (IOException e) {
             e.printStackTrace();
         }
-
-        return entityList;
+        return dict;
         
     }
 
@@ -65,3 +61,4 @@ public class JSONParser {
     }
 
 }
+
