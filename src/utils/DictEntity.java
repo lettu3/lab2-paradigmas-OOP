@@ -59,22 +59,22 @@ public class DictEntity {
     
     //toma una label, y devuelve la categoria de esa entidad si es que existe
     public String getCategoryfromlabel (String label){
-
+        //completar
     }
 
     //toma una label y devuelve el topico de la entidad si es que existe
     public List<String> getTopicFromLabel (String label){
-
+        //completar
     }
 
     //toma una label y devuelve la lista de keywords de la entidad si es que existe
     public List<String> getKeywordsFromLabel (String label){
-
+        //completar
     }
 
     //toma una keyword y devuelve la label asociada
     public String getLabelFromKeyword (String keyword){
-
+        //completar
     }
 }
 
