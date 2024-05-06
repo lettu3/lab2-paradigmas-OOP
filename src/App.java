@@ -24,6 +24,7 @@ public class App {
         }
         if(args.length == 0){
             printHelp(feedsDataArray);
+            System.exit(0);
         }
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args);
@@ -45,13 +46,15 @@ public class App {
         }
 
         List<Article> allArticles = new ArrayList<>();
+        String feedKey = config.getFeedKey();
         try {
             for(FeedsData feed : feedsDataArray){
-                String urlXML = FeedParser.fetchFeed(feed.getUrl());
-                FeedParser.fetchFeed(feed.getUrl());
-                allArticles = FeedParser.parseXML(urlXML);
+                if (feedKey.equals("all") || feed.getLabel().equals(feedKey)){
+                    String urlXML = FeedParser.fetchFeed(feed.getUrl());
+                    FeedParser.fetchFeed(feed.getUrl());
+                    allArticles = FeedParser.parseXML(urlXML);
+                }
             }
-            
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e){
@@ -71,10 +74,11 @@ public class App {
         }
 
         if (config.getComputeNamedEntities()) {
-            // TODO: complete the message with the selected heuristic name
             System.out.println("Computing named entities using ");
+            System.out.println(config.getHeuristic());
 
             // TODO: compute named entities using the selected heuristic
+            // Now, parsing in use is parseFromHeuristicCap
             NamedEntity ent = new NamedEntity();
             for(Article art : allArticles){
                 ent.parseFromHeuristicCap(art);
