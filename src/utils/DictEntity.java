@@ -45,7 +45,7 @@ public class DictEntity {
         dictionary = new ArrayList<>();
     }
 
-    public void addToDictEntity(String label, String category, List<String> topics, List<String> keywords){
+    public void add(String label, String category, List<String> topics, List<String> keywords){
         dictionary.add(new Entity(label, category, topics, keywords));
     }
     
@@ -101,5 +101,10 @@ public class DictEntity {
             }
         }
         return null;
+    }
+
+    // Para debugear
+    public void print() {
+        System.out.println("Cantidad de entradas(labels): " + dictionary.size());
     }
 }
