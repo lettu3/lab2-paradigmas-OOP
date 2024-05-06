@@ -87,7 +87,7 @@ public class FeedParser {
         
         // TODO: Cambiar el user-agent al nombre de su grupo. 
         // Si todos los grupos usan el mismo user-agent, el servidor puede bloquear las solicitudes.
-        connection.setRequestProperty("User-agent", "lab_paradigmas");
+        connection.setRequestProperty("Kernel-Space-Program", "lab_paradigmas");
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
 
