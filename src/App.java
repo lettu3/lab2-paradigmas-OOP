@@ -6,15 +6,15 @@ import java.net.MalformedURLException;
 import feed.*;
 import namedEntities.NamedEntity;
 import utils.Config;
+import utils.DictEntity;
 import utils.FeedsData;
 import utils.JSONParser;
 import utils.UserInterface;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        
         List<FeedsData> feedsDataArray = new ArrayList<>();
         try {
             feedsDataArray = JSONParser.parseJsonFeedsData("src/data/feeds.json");
@@ -28,6 +28,11 @@ public class App {
         }
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args);
+
+        // Parseo del diccionario
+        DictEntity dictEntity = new DictEntity();
+        dictEntity = JSONParser.parseJsonDictEntity("src/data/dictionary.json");
+        dictEntity.print();
 
         try {
             run(config, feedsDataArray);
