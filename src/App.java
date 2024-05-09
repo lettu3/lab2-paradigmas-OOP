@@ -22,13 +22,14 @@ public class App {
             e.printStackTrace();
             System.exit(1);
         }
-        if(args.length == 0){
-            printHelp(feedsDataArray);
-            System.exit(0);
-        }
+        
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args);
 
+        if(args.length == 0 || config.getPrintHelp()){
+            printHelp(feedsDataArray);
+            System.exit(0);
+        }
         // Parseo del diccionario
         DictEntity dictEntity = new DictEntity();
         dictEntity = JSONParser.parseJsonDictEntity("src/data/dictionary.json");
