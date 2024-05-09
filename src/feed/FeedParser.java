@@ -87,13 +87,13 @@ public class FeedParser {
         
         // TODO: Cambiar el user-agent al nombre de su grupo. 
         // Si todos los grupos usan el mismo user-agent, el servidor puede bloquear las solicitudes.
-        connection.setRequestProperty("Kernel-Space-Program", "lab_paradigmas");
+        connection.setRequestProperty("user-agent", "Kernel Space Program");
         connection.setConnectTimeout(5000);
         connection.setReadTimeout(5000);
 
         int status = connection.getResponseCode();
         if (status != 200) {
-            throw new Exception("HTTP error code: " + status);
+            throw new Exception("HTTP error code: " + status + "\nAt URL: " + feedURL);
         } else {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
