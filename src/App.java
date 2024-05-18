@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.text.html.parser.Entity;
+
 import java.net.MalformedURLException;
 
 import feed.*;
@@ -33,10 +36,10 @@ public class App {
         // Parseo del diccionario
         DictEntity dictEntity = new DictEntity();
         dictEntity = JSONParser.parseJsonDictEntity("src/data/dictionary.json");
-        dictEntity.print();
+        //dictEntity.print();
 
         try {
-            run(config, feedsDataArray);
+            run(config, feedsDataArray, dictEntity);
         }
         catch (Exception e){ // atrapa todas las excepciones
             e.printStackTrace();
@@ -44,7 +47,7 @@ public class App {
     }
 
     // TODO: Change the signature of this function if needed
-    private static void run(Config config, List<FeedsData> feedsDataArray) throws MalformedURLException, IOException, Exception {
+    private static void run(Config config, List<FeedsData> feedsDataArray, DictEntity dictEntity) throws MalformedURLException, IOException, Exception {
 
         if (feedsDataArray == null || feedsDataArray.size() == 0) {
             System.out.println("No feeds data found");
@@ -87,11 +90,22 @@ public class App {
             // Now, parsing in use is parseFromHeuristicCap
             NamedEntity ent = new NamedEntity();
             for(Article art : allArticles){
-                ent.parseFromHeuristicCap(art);
+                ent.parseFromDoubleHeuristicCap(art);
             }
             ent.print();
+
+            for (String s : ent.listNamedEntities){
+                String label = dictEntity.getLabelFromKeyword(s);
+                if(label != null){
+                    dictEntity.increaseAppearanceCount(label); //Cambiar a increase
+                }
+            }
+            dictEntity.print();
+
             // TODO: Print stats
             System.out.println("\nStats: ");
+
+            
             System.out.println("-".repeat(80));
         }
     }
