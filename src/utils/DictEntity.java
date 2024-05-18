@@ -5,19 +5,20 @@ import java.util.List;
 
 public class DictEntity {
 
-    private class Entity {
+    public class Entity {
         private String label;
         private List<String> keywords;
         private String category;
         private List<String> topics;
-
+        private int appearanceCount;
     
         //constructor
-        public Entity(String label, String category, List<String> topics, List<String> keywords) {
+        private Entity(String label, String category, List<String> topics, List<String> keywords) {
             this.label = label;
             this.keywords = keywords;
             this.category = category;
             this.topics = topics;
+            this.appearanceCount = 0;
         }
 
         //getters
@@ -37,9 +38,17 @@ public class DictEntity {
             return topics;
         }
 
+        public int getAppearanceCount() {
+            return appearanceCount;
+        }
+
+        public void increaseAppearanceCount() {
+            appearanceCount++;
+        }
+
     }
 
-    private List<Entity> dictionary;
+    public List<Entity> dictionary;
 
     public DictEntity(){
         dictionary = new ArrayList<>();
@@ -106,5 +115,20 @@ public class DictEntity {
     // Para debugear
     public void print() {
         System.out.println("Cantidad de entradas(labels): " + dictionary.size());
+        for(Entity entity : dictionary) {
+            if(entity.getAppearanceCount() > 0) {
+                System.out.println("Label: " + entity.getLabel() + ", Appearance Count: " + entity.getAppearanceCount());
+            }
+        }
     }
+
+    public void increaseAppearanceCount(String label){
+        for(Entity entity : dictionary) {
+            if(entity.getLabel().equals(label)){
+                entity.increaseAppearanceCount();
+                return;   
+            }
+        }
+    }
+
 }

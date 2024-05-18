@@ -39,6 +39,7 @@ public class JSONParser {
                 String category = jsonObject.getString("Category");
                 List<String> topics = getStringListFromJSONArray(jsonObject.getJSONArray("Topics"));
                 List<String> keywords = getStringListFromJSONArray(jsonObject.getJSONArray("keywords"));
+                
                 dict.add(label, category, topics, keywords);
             }
  
