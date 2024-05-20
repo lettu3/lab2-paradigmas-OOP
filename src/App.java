@@ -78,9 +78,11 @@ public class App {
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");
             for(FeedsData feedData : feedsDataArray){
-                feedData.print();
+                if (feedKey.equals("all") || feedData.getLabel().equals(feedKey)){
+                    feedData.print();
             }
         }
+    }
 
         if (config.getComputeNamedEntities()) {
             System.out.println("Computing named entities using ");
