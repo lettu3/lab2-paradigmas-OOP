@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DictEntity {
 
-    public class Entity {
+    protected class Entity {
         private String label;
         private List<String> keywords;
         private String category;
