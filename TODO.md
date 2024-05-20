@@ -6,3 +6,4 @@
     (*) filtrar de algún modo feedsDataArray en App.java, para no tener que iterarlo todo
 
 - [ ] Mover printHelp y mejorar App.java en general
+- [ ] Ver si Stats.java debe usar el tipo Entity para hacer privada la clase Entity.
