@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.text.html.parser.Entity;
@@ -8,6 +9,7 @@ import java.net.MalformedURLException;
 
 import feed.*;
 import namedEntities.NamedEntity;
+import namedEntities.heuristics.Heuristics;
 import utils.Config;
 import utils.DictEntity;
 import utils.FeedsData;
@@ -126,13 +128,14 @@ public class App {
         System.out.println("  -ne, --named-entity <heuristicName>: Use the specified heuristic to extract");
         System.out.println("                                       named entities");
         System.out.println("                                       Available heuristic names are: ");
-        // TODO: Print the available heuristics with the following format
-        System.out.println("                                       <name>: <description>");
+        for (String heuristic : Heuristics.getAvailableHeuristics()) {
+            System.out.println("                                       " +
+             heuristic + ": " + Heuristics.getHeuristicDescription(heuristic));
+        }
         System.out.println("  -pf, --print-feed:                   Print the fetched feed");
         System.out.println("  -sf, --stats-format <format>:        Print the stats in the specified format");
         System.out.println("                                       Available formats are: ");
         System.out.println("                                       cat: Category-wise stats");
         System.out.println("                                       topic: Topic-wise stats");
     }
-
 }
