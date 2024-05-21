@@ -21,7 +21,11 @@ public class JSONParser {
             String label = jsonObject.getString("label");
             String url = jsonObject.getString("url");
             String type = jsonObject.getString("type");
+
+            // Una vez obtenidas las keys, las añadimos a la lista a retornar y
+            // al array de feeds disponibles
             feedsList.add(new FeedsData(label, url, type));
+            FeedsData.addAvailableFeed(label);
         }
         return feedsList;
     }
