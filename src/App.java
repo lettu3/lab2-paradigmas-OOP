@@ -14,6 +14,7 @@ import utils.Config;
 import utils.DictEntity;
 import utils.FeedsData;
 import utils.JSONParser;
+import utils.Stats;
 import utils.UserInterface;
 
 public class App {
@@ -102,15 +103,16 @@ public class App {
             for (String s : ent.listNamedEntities){
                 String label = dictEntity.getLabelFromKeyword(s);
                 if(label != null){
-                    dictEntity.increaseAppearanceCount(label); //Cambiar a increase
+                    dictEntity.increaseAppearanceCount(label); 
                 }
             }
             dictEntity.print();
 
             // TODO: Print stats
             System.out.println("\nStats: ");
-
-            
+            Stats stats = new Stats();
+            List<DictEntity.Entity> appeared = stats.getAppearedEntities(dictEntity.dictionary);
+            stats.printStatsByMode(appeared, "category");
             System.out.println("-".repeat(80));
         }
     }
