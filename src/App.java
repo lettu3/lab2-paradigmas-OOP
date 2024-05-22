@@ -1,15 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.text.html.parser.Entity;
-
 import java.net.MalformedURLException;
-
 import feed.*;
 import namedEntities.NamedEntity;
-import namedEntities.heuristics.Heuristics;
 import utils.Config;
 import utils.DictEntity;
 import utils.FeedsData;
@@ -96,8 +90,16 @@ public class App {
             // Now, parsing in use is parseFromHeuristicCap
             NamedEntity ent = new NamedEntity();
             for(Article art : allArticles){
-                ent.parseFromDoubleHeuristicCap(art);
+                if(config.getHeuristic().equals("cap")) {
+                    ent.parseFromHeuristicCap(art);
+                } else if(config.getHeuristic().equals("doublecap")) {
+                    ent.parseFromDoubleHeuristicCap(art);
+                } else {
+                    System.out.println("Heuristic not found");
+                    System.exit(1);
+                }
             }
+
             ent.print();
 
             for (String s : ent.listNamedEntities){
@@ -109,11 +111,10 @@ public class App {
             dictEntity.print();
 
             // TODO: Print stats
+            System.out.println("-".repeat(80));
             System.out.println("\nStats: ");
             Stats stats = new Stats();
-            List<DictEntity.Entity> appeared = stats.getAppearedEntities(dictEntity.dictionary);
-            stats.printStatsByMode(appeared, "category");
-            System.out.println("-".repeat(80));
+            stats.printStatsByMode(stats.getAppearedEntities(dictEntity.dictionary), config.getMode());
         }
     }
 }

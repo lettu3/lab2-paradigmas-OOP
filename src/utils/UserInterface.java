@@ -48,12 +48,17 @@ public class UserInterface {
         Boolean computeNamedEntities = optionDict.containsKey("-ne");
         // TODO: use value for heuristic config
         String heuristic = optionDict.get("-ne");
+        String mode = "cat";
+        if(optionDict.containsKey("-sf")){
+            mode = optionDict.get("-sf");
+        }
+
         String feedKey = "all";
         if(optionDict.get("-f") != null){
             feedKey = optionDict.get("-f");
         }
 
-        return new Config(printHelp, printFeed, computeNamedEntities, heuristic, feedKey);
+        return new Config(printHelp, printFeed, computeNamedEntities, heuristic, mode, feedKey);
     }
 
     public static void printHelp() {
