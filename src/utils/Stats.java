@@ -72,28 +72,28 @@ public class Stats {
     //TODO
     public void printStatsByMode(List<Entity> dictionary, String mode) {
         //List<Entity> entities = new ArrayList<>();
-        if(mode.equals("category")) {
+        if(mode.equals("cat")) {
             List<String> categories = getCategories(dictionary);
             for(String category : categories){
-                System.out.println("Category:" + category + "\n");
+                System.out.println("Category:" + category);
                 for(Entity currEntity : dictionary){
                     if(currEntity.getCategory().equals(category)){
-                        System.out.println("    " + currEntity.getLabel() + "(" + currEntity.getAppearanceCount() + ")\n");
+                        System.out.println("    " + currEntity.getLabel() + "(" + currEntity.getAppearanceCount() + ")");
                     }
                 }
             }
         } else if(mode.equals("topic")) {
             List<String> topics = getTopics(dictionary);
             for(String topic : topics){
-                System.out.println("Topic:" + topic + "\n");
+                System.out.println("Topic:" + topic);
                 for(Entity currEntity : dictionary){
                     if(currEntity.getTopics().contains(topic)){
-                        System.out.println("    " + currEntity.getLabel() + "(" + currEntity.getAppearanceCount() + ")\n");
+                        System.out.println("    " + currEntity.getLabel() + "(" + currEntity.getAppearanceCount() + ")");
                     }
                 }
             }
         } else {
-            System.out.println("Invalid mode");
+            System.out.println("Invalid mode" + mode);
         }
     }
 }
