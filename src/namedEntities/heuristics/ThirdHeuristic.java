@@ -1,7 +1,7 @@
 /*
- * Esta heuristica hace ___
- * 
- * 
+ * Esta heuristica busca filtrar el nombre de instituciones u organizaciones
+ * Muchas veces se utilizan los conectores "de/del" para referirse al lugar de operaciones de dicha organizacion 
+ * Ej: Universidad Nacional de Córdoba
 */
 package namedEntities.heuristics;
 
@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+//instituciones, empiezan con "Instituto", "Centro", "Fundacion", "Banco", "Corporacion", "..."
+// les puede seguir un conector en minuscula "de" o "del" y habria que tomar todas las palabras en mayusculas hasta que no se encuentre
+// otro conector, es decir cualquier otra palabra en minsucula
 
 public class ThirdHeuristic {
   
