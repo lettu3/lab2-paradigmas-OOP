@@ -65,33 +65,6 @@ public class Stats {
         return topics;
     }
 
-    //Se asume que el diccionario es el que tiene todas las entidades que aparecieron.
-    //Devuelve en una lista las entidades que aparecieron y que tienen la categoria especificada.
-    public List<Entity> getEntitiesFromCategory(List<Entity> dictionary, String category) {
-        List<Entity> entities = new ArrayList<>();
-        for (Entity entity : dictionary) {
-            if(entity.getCategory().equals(category)) {
-                entities.add(entity);
-            }
-        }
-        return entities;
-    }
-
-    //Se asume que el diccionario es el que tiene todas las entidades que aparecieron.
-    //Devuelve en una lista las entidades que aparecieron y que tienen el tópico especificado.
-    public List<Entity> getEntitiesFromTopic(List<Entity> dictionary, String topic) {
-        List<Entity> entities = new ArrayList<>();
-        for (Entity entity : dictionary) {
-            if(entity.getTopics() != null) {
-                if(entity.getTopics().contains(topic)) {
-                    entities.add(entity);
-                }
-            }
-        }
-        return entities;
-    }
-
-    //TODO
     public void printStatsByMode(List<Entity> dictionary, String mode) {
         //List<Entity> entities = new ArrayList<>();
         if(mode.equals("cat")) {
