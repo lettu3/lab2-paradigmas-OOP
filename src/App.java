@@ -69,9 +69,6 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
-         
-        
-        // TODO: Populate allArticles with articles from corresponding feeds
 
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");
@@ -85,8 +82,6 @@ public class App {
         if (config.getComputeNamedEntities()) {
             System.out.println("Computing named entities using ");
             System.out.println(config.getHeuristic());
-
-            // TODO: compute named entities using the selected heuristic
             // Now, parsing in use is parseFromHeuristicCap
             NamedEntity ent = new NamedEntity();
             for(Article art : allArticles){
@@ -99,7 +94,6 @@ public class App {
                     System.exit(1);
                 }
             }
-
             ent.print();
 
             for (String s : ent.listNamedEntities){
@@ -110,11 +104,16 @@ public class App {
             }
             dictEntity.print();
 
-            // TODO: Print stats
+            //Create an instance of each Entity class for each entity that appeared in the articles.
+            List<NamedEntity> entitiesForClass = Stats.objectCreator(Stats.getAppearedEntities(dictEntity.dictionary));
+
             System.out.println("-".repeat(80));
+            System.out.println(entitiesForClass.size() + " objetos creados.");
             System.out.println("\nStats: ");
             Stats stats = new Stats();
-            stats.printStatsByMode(stats.getAppearedEntities(dictEntity.dictionary), config.getMode());
+            stats.printStatsByMode(Stats.getAppearedEntities(dictEntity.dictionary), config.getMode());
         }
     }
 }
+
+

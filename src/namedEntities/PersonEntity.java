@@ -8,6 +8,7 @@ public class PersonEntity extends NamedEntity {
     private boolean isAlive;
     private String nationality;
     //public List <String> tags;
+    
     public PersonEntity(String name) {
         super();
         this.name = name;
