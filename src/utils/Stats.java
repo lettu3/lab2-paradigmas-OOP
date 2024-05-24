@@ -5,9 +5,15 @@ import java.util.List;
 
 import utils.DictEntity.Entity;
 
+import namedEntities.PersonEntity;
+import namedEntities.NamedEntity;
+import namedEntities.OrganizationEntity;
+import namedEntities.LocationEntity;
+import namedEntities.OtherEntity;
+
 public class Stats {
     
-    public List<Entity> getAppearedEntities(List<Entity> dictionary) {
+    public static List<Entity> getAppearedEntities(List<Entity> dictionary) {
         List<Entity> entities = new ArrayList<>();
         for (Entity entity : dictionary) {
             if(entity.getAppearanceCount() > 0) {
@@ -17,9 +23,25 @@ public class Stats {
         return entities;
     }
 
+    public static List<NamedEntity> objectCreator(List<Entity> dictionary) {
+        List<NamedEntity> entities = new ArrayList<>();
+        for(Entity entity : dictionary) {
+            if (entity.getCategory() == "PERSON") {
+                entities.add(new PersonEntity(entity.getLabel()));
+            } else if (entity.getCategory() == "ORGANIZATION") {
+                entities.add(new OrganizationEntity(entity.getLabel()));
+            } else if (entity.getCategory() == "LOCATION") {
+                entities.add(new LocationEntity(entity.getLabel()));
+            } else {
+                entities.add(new OtherEntity(entity.getLabel()));
+            }
+        }
+        return entities;
+    }
+
     //TODO: Se asume que dictionary tiene solo las entidades que aparecieron.
-    //Devuelve en una lista las categorias y tópicos que aparecieron.
-    public List<String> getCategories(List<Entity> dictionary) {
+    //Devuelve en una lista las categorias que aparecieron.
+    public static List<String> getCategories(List<Entity> dictionary) {
         List<String> categories = new ArrayList<>();
         for (Entity entity : dictionary) {
             //Agregar las categorias.

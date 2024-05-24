@@ -18,12 +18,14 @@ public class LocationEntity extends NamedEntity {
         this.name = name;
     }
 
+    /*
     public LocationEntity(String coordinates, int heightFromSeaLevel, String country) {
         super();
         this.coordinates = coordinates;
         this.heightFromSeaLevel = heightFromSeaLevel;
         this.country = country;
     }
+    */
 
     public String getCoordinates() {
         return this.coordinates;
