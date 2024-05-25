@@ -3,6 +3,7 @@ package namedEntities;
 //import com.google.gson.reflect.TypeToken;
 import namedEntities.heuristics.CapitalizedWordHeuristic;
 import namedEntities.heuristics.DoubleCapitalizedWordHeuristic;
+import namedEntities.heuristics.ThirdHeuristic;
 import feed.Article;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,12 @@ public class NamedEntity {
         DoubleCapitalizedWordHeuristic heuristic = new DoubleCapitalizedWordHeuristic();
         // Añadimos los candidadtos a listNamedEntities. Cada entrada es un string.
         listNamedEntities.addAll(heuristic.extractPersonNames(art.getTitle()));
+    }
+
+    public void parseFromCorporationCap(Article art) {
+        ThirdHeuristic heuristic = new ThirdHeuristic();
+        // Añadimos los candidadtos a listNamedEntities. Cada entrada es un string.
+        listNamedEntities.addAll(heuristic.extractX(art.getTitle()));
     }
 
     public void print() {

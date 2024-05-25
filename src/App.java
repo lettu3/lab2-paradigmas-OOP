@@ -89,10 +89,15 @@ public class App {
                     ent.parseFromHeuristicCap(art);
                 } else if(config.getHeuristic().equals("doublecap")) {
                     ent.parseFromDoubleHeuristicCap(art);
-                } else {
+                } else if(config.getHeuristic().equals("corp")) {
+                    ent.parseFromCorporationCap(art);
+                }   
+                else {
                     System.out.println("Heuristic not found");
                     System.exit(1);
                 }
+                // TODO: imprimir artículos?
+                //art.printArticle();
             }
             ent.print();
 
