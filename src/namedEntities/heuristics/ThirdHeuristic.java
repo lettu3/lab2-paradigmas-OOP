@@ -29,8 +29,8 @@ public class ThirdHeuristic {
         text = Normalizer.normalize(text, Normalizer.Form.NFD);
         text = text.replaceAll("\\p{M}", "");
 
-        //que hago aca?
-        Pattern pattern = ?;
+        Pattern pattern = Pattern.compile("(Instituto|Centro|Fundacion|Banco|Corporacion|Asociacion|Central|Confederación)\\s(de|la|de\\sla|del)\\s([A-Z][a-z]+(?:\\s[A-Z][a-z]+)*)(?:\\sy\\s[A-Z][a-z]+)?");
+        
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {

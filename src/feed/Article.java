@@ -32,7 +32,8 @@ public class Article {
     public void printArticle(){
         System.out.println("Title: " + title);
         System.out.println("Description: " + description);
-        System.out.println("Publicationn Date: " + pubDate);
-        System.out.println("Link:\n" + title);
+        System.out.println("Publication Date: " + pubDate);
+        System.out.println("Link:" + link);
+        System.out.println();
     }
 }   
