@@ -84,8 +84,7 @@ public class FeedParser {
 
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-Type", "application/json");
-        
-        // TODO: Cambiar el user-agent al nombre de su grupo. 
+         
         // Si todos los grupos usan el mismo user-agent, el servidor puede bloquear las solicitudes.
         connection.setRequestProperty("user-agent", "Kernel Space Program");
         connection.setConnectTimeout(5000);

@@ -4,13 +4,9 @@ Muchas veces se utilizan los conectores "de/del" para referirse al lugar de oper
 Ej: Universidad Nacional de Córdoba
 */
 package namedEntities.heuristics;
-
-import java.text.Normalizer;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 /*
 instituciones, empiezan con "Instituto", "Centro", "Fundacion", "Banco", "Corporacion", "Asociacion", "Central", "Confederación", ""
@@ -18,25 +14,18 @@ les puede seguir un conector en minuscula "de" o "del" y habria que tomar todas 
 otro conector, es decir cualquier otra palabra en minsucula
 nota: despues de que se uso un conector "de"/"del", tambien se podria usar un ultimo conector "y"
  */
-public class ThirdHeuristic {
-  
+public class ThirdHeuristic extends Heuristics {
+
+    public ThirdHeuristic() {
+        super();
+    }
+    
     public List<String> extractX (String text) {
-        List<String> candidates = new ArrayList<>();
-
-        //se eliminan caracteres sin sentido para analizar
-        text = text.replaceAll("[-+.^:,\"]", "");
-        //elimina tildes
-        text = Normalizer.normalize(text, Normalizer.Form.NFD);
-        text = text.replaceAll("\\p{M}", "");
-
         Pattern pattern = Pattern.compile("(Instituto|Centro|Fundacion|Banco|Corporacion|Asociacion|Central|Confederación)\\s(de|la|de\\sla|del)\\s([A-Z][a-z]+(?:\\s[A-Z][a-z]+)*)(?:\\sy\\s[A-Z][a-z]+)?");
-        
         Matcher matcher = pattern.matcher(text);
-
         while (matcher.find()) {
             candidates.add(matcher.group());
         }
-
         return candidates;
     }
 }

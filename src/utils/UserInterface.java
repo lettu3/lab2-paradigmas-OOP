@@ -46,7 +46,6 @@ public class UserInterface {
                             optionDict.containsKey("--help"));
         Boolean printFeed = optionDict.containsKey("-pf");
         Boolean computeNamedEntities = optionDict.containsKey("-ne");
-        // TODO: use value for heuristic config
         String heuristic = optionDict.get("-ne");
         String mode = "cat";
         if(optionDict.containsKey("-sf")){

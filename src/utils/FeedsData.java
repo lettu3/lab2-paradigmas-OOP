@@ -8,7 +8,6 @@ public class FeedsData {
     private String type;
     private static List<String> availableFeedsData = new ArrayList<>();
 
-
     public FeedsData(String label, String url, String type) {
         this.label = label;
         this.url = url;

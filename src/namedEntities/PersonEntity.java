@@ -1,13 +1,10 @@
 package namedEntities;
 
-//import java.util.List;
-
 public class PersonEntity extends NamedEntity {
     private String name;
     private int age;
     private boolean isAlive;
     private String nationality;
-    //public List <String> tags;
     
     public PersonEntity(String name) {
         super();

@@ -96,8 +96,7 @@ public class App {
                     System.out.println("Heuristic not found");
                     System.exit(1);
                 }
-                // TODO: imprimir artículos?
-                //art.printArticle();
+                
             }
             ent.print();
 
@@ -120,5 +119,3 @@ public class App {
         }
     }
 }
-
-

@@ -1,13 +1,10 @@
 package namedEntities;
 
-//import java.util.List;
-
 public class OrganizationEntity extends NamedEntity {
     
     private String name;
     private int numMembers;
     private boolean nonProfit;
-    //public List <String> tags;
 
     public OrganizationEntity(String name) {
         super();

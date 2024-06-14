@@ -39,7 +39,6 @@ public class Stats {
         return entities;
     }
 
-    //TODO: Se asume que dictionary tiene solo las entidades que aparecieron.
     //Devuelve en una lista las categorias que aparecieron.
     public static List<String> getCategories(List<Entity> dictionary) {
         List<String> categories = new ArrayList<>();
@@ -66,7 +65,6 @@ public class Stats {
     }
 
     public void printStatsByMode(List<Entity> dictionary, String mode) {
-        //List<Entity> entities = new ArrayList<>();
         if(mode.equals("cat")) {
             List<String> categories = getCategories(dictionary);
             for(String category : categories){
